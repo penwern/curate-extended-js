@@ -61,7 +61,7 @@ function initializeDemo() {
 
   // Get the server time and set up the countdown
   getTimeFromServer(function (timeTil) {
-    const dBanT = document.querySelector("#pydio-demo-death-counter span");
+    const dBanT = document.querySelector("#demoTimer");
     setInterval(function () {
       if (timeTil > 0) {
         timeTil--;
@@ -91,7 +91,7 @@ function createDeathCounterBanner() {
         text-align: center;
         color: rgb(255, 255, 255);
         box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 35px, rgba(0, 0, 0, 0.12) 0px 5px 10px;">
-        <span class="icon-warning-sign"></span> This demo will next reset itself in:
+        <span class="icon-warning-sign"></span> This demo will next reset itself in:<div id="demoTimer">00:00:00</div>
       </div>
     </div>
   `;
