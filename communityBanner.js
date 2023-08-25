@@ -3,7 +3,7 @@ function getCookie(cname) {
   let name = cname + "=";
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
-  for(let i = 0; i <ca.length; i++) {
+  for (let i = 0; i < ca.length; i++) {
     let c = ca[i];
     while (c.charAt(0) == ' ') {
       c = c.substring(1);
@@ -14,42 +14,42 @@ function getCookie(cname) {
   }
   return "";
 }
-function dBM(p){
+function dBM(p) {
   let d = document.querySelector("#dBcheck")
-  if (d.checked == true){
+  if (d.checked == true) {
     let expires = "max-age=43200"
-    document.cookie = "noCBanner=true;"+expires
+    document.cookie = "noCBanner=true;" + expires
   }
-  let t = "-"+(p.offsetHeight*1.2)+"px"
-  p.style.transform = "translateY("+t+")"
-  setTimeout(function(){
+  let t = "-" + (p.offsetHeight * 1.2) + "px"
+  p.style.transform = "translateY(" + t + ")"
+  setTimeout(function () {
     p.remove()
-  }, 500) 
+  }, 500)
 }
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function () {
   let cd = getCookie("noCBanner").replace("noCBanner=", "")
-  let mR = new XMLHttpRequest() 
-  mR.addEventListener("load", function(){
+  let mR = new XMLHttpRequest()
+  mR.addEventListener("load", function () {
     let jr = JSON.parse(mR.response)
-    if (window.location.href.includes('/public/') && jr.public == false){
-        
-    }else{
-          if ((jr.available == true && cd == "false")||(cd == "" && jr.available == true)){
-      let bH = document.createElement("div")
-      bH.innerHTML = h
-      document.body.appendChild(bH)
-      let bM = document.querySelector("#bannerBox")
-      setTimeout(function(){
+    if (window.location.href.includes('/public/') && jr.public == false) {
+
+    } else {
+      if ((jr.available == true && cd == "false") || (cd == "" && jr.available == true)) {
+        let bH = document.createElement("div")
+        bH.innerHTML = h
+        document.body.appendChild(bH)
+        let bM = document.querySelector("#bannerBox")
+        setTimeout(function () {
           document.querySelector("#bannerCont").style.visibility = "visible"
           document.querySelector("#bMT").innerHTML = jr.message
-          let t = "-"+(bM.offsetHeight*1.2)+"px"
+          let t = "-" + (bM.offsetHeight * 1.2) + "px"
           bM.style.transform = "translateY(10vh)"
-      },1500) 
-    }
+        }, 1500)
+      }
     }
   })
-  
-  let u = "https://"+window.location.hostname+":6903/bannerMessage"
+
+  let u = "https://" + window.location.hostname + ":6903/bannerMessage"
   mR.open("GET", u)
   mR.setRequestHeader("content-type", "application/json")
   mR.send()

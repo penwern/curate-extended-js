@@ -1,7 +1,7 @@
 //script ID must be hashWorker
 
 importScripts("https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.2/spark-md5.min.js")
-   const incrementalMD5 = file =>
+const incrementalMD5 = file =>
   new Promise((resolve, reject) => {
     var loaded = 0
     var startTime = performance.now()
@@ -19,16 +19,16 @@ importScripts("https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.2/spark-md5.
     }
     fileReader.addEventListener("progress", event => {
       loaded += event.loaded
-      let pE = Math.round((loaded/tSize)*100)
+      let pE = Math.round((loaded / tSize) * 100)
       let rS = pE + "%"
       //console.log(rS)
     })
     fileReader.addEventListener("loadend", event => {
-      if (event.total>0){
+      if (event.total > 0) {
         var endTime = performance.now()
         //console.log(`Took ${endTime - startTime} milliseconds`)
       }
-      
+
     })
     fileReader.onerror = () => reject(fileReader.error)
 
@@ -39,11 +39,11 @@ importScripts("https://cdnjs.cloudflare.com/ajax/libs/spark-md5/3.0.2/spark-md5.
     }
     loadNext()
   })
-  self.onmessage = async function(event) {
-    //console.log(event.data)
-    if (event.data.file && (event.data.msg == "begin hash")){
-         const gmd5 = await incrementalMD5(event.data.file)
-         postMessage({status: "complete",hash:gmd5})
-         self.close()
-    }
+self.onmessage = async function (event) {
+  //console.log(event.data)
+  if (event.data.file && (event.data.msg == "begin hash")) {
+    const gmd5 = await incrementalMD5(event.data.file)
+    postMessage({ status: "complete", hash: gmd5 })
+    self.close()
   }
+}

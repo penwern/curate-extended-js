@@ -21,8 +21,8 @@ const dcFields = ["dc-title", "dc-creator", "dc-description", "dc-contributor", 
     };
 
 function fA(e, t) {
-    e.style.visibility = "visible", e.textContent = t, setTimeout(function() {
-        e.classList.add("flyAway"), setTimeout(function() {
+    e.style.visibility = "visible", e.textContent = t, setTimeout(function () {
+        e.classList.add("flyAway"), setTimeout(function () {
             e.remove()
         }, 2e3)
     }, 1)
@@ -55,7 +55,7 @@ function cMEl(e, t) {
     s.id = e.replace("-", "") + "Link", s.src = "https://i.ibb.co/Jj9psth/LINKED.png", s.alt = "LINKED", s.className = "dcisadL";
     var o = {};
     for (let c in dcFields) o[document.querySelector("#" + dcFields[c]).id] = document.querySelector("#" + dcFields[c]).value;
-    s.addEventListener("click", function() {
+    s.addEventListener("click", function () {
         mTog(event, o)
     }), s.border = "0", r.appendChild(s);
     let p = document.createElement("td");
@@ -80,7 +80,7 @@ function cwSwal(e) {
         showCloseButton: !0,
         confirmButtonText: "Save mapping",
         padding: "2em",
-        preConfirm: function() {
+        preConfirm: function () {
             let e = document.querySelector("#swal2-html-container > table").rows;
             for (var t of e) document.querySelector("#" + t.lastChild.textContent.toLowerCase()).value = t.lastChild.lastChild.value;
             saveHandler()
@@ -101,7 +101,7 @@ function isTDCdW() {
 function cWB() {
     if (null == document.querySelector("#cWB")) {
         let e = document.createElement("button");
-        e.id = "cWB", e.innerHTML = '<i class="icon-link menu-icons" style="color:gray";></i>', e.classList.add("pBtnStyle2"), e.onclick = function() {
+        e.id = "cWB", e.innerHTML = '<i class="icon-link menu-icons" style="color:gray";></i>', e.classList.add("pBtnStyle2"), e.onclick = function () {
             var e = [];
             for (let t in isTDCdW(), isadFields) e.push(document.querySelector("#" + isadFields[t]).value)
         };
@@ -120,7 +120,7 @@ function isadDivs(e) {
             n = document.createElement("label"),
             l = document.createElement("span"),
             d = document.createElement("ul");
-        d.className = "mdsSlide", l.id = "mdsSpan-" + e[t].replaceAll(" ", "-"), l.setAttribute("state-icon", "+"), l.className = "mdsSpan2", l.textContent = e[t], n.appendChild(l), a.type = "checkbox", a.name = "schema-" + e[t], a.className = "checkbox-isadg2", a.id = "checkbox-isadg" + t, a.addEventListener("change", function() {
+        d.className = "mdsSlide", l.id = "mdsSpan-" + e[t].replaceAll(" ", "-"), l.setAttribute("state-icon", "+"), l.className = "mdsSpan2", l.textContent = e[t], n.appendChild(l), a.type = "checkbox", a.name = "schema-" + e[t], a.className = "checkbox-isadg2", a.id = "checkbox-isadg" + t, a.addEventListener("change", function () {
             let e = a.checked;
             !0 == e ? l.setAttribute("state-icon", "-") : !1 == e && l.setAttribute("state-icon", "+")
         }), n.htmlFor = a.id, i.appendChild(n), i.appendChild(a), i.appendChild(d), document.querySelector("#isadg-container").lastChild.appendChild(i)
@@ -129,14 +129,14 @@ function isadDivs(e) {
 
 function isadMap(e) {
     let t = {
-            0: "identity statement",
-            1: "context",
-            2: "content and structure",
-            3: "conditions of access and use",
-            4: "allied materials",
-            5: "notes",
-            6: "description control"
-        },
+        0: "identity statement",
+        1: "context",
+        2: "content and structure",
+        3: "conditions of access and use",
+        4: "allied materials",
+        5: "notes",
+        6: "description control"
+    },
         i = [{
             element: "reference code(s)",
             areaId: 0
@@ -329,7 +329,7 @@ function schemaToLi(e, t, i) {
 }
 
 function clearFields() {
-    dcFields.concat(isadFields).forEach(function(e) {
+    dcFields.concat(isadFields).forEach(function (e) {
         document.querySelector("#" + e).value = ""
     })
 }
@@ -356,17 +356,17 @@ function cyB() {
 function uDfC(e) {
     let t = "usermeta-" + Object.fromEntries(e._metadata).uuid,
         i = JSON.parse(sessionStorage.getItem(t));
-    setTimeout(function() {
+    setTimeout(function () {
         for (var e in i) document.querySelector("#" + e.replace("usermeta-", "")).value = JSON.parse(i[e])
     }, 10)
 }
 
 function oHm(e) {
-    setTimeout(function() {
-        document.querySelector("#checkbox-dc") ? e && (oH(), cWB()) : setTimeout(function() {
+    setTimeout(function () {
+        document.querySelector("#checkbox-dc") ? e && (oH(), cWB()) : setTimeout(function () {
             try {
                 "panelContent" == document.querySelector("#info_panel > div > div > div > div:nth-child(3)").lastChild.className || document.querySelector("#info_panel > div > div > div > div:nth-child(3)").firstElementChild.click(), oH(), cWB()
-            } catch (e) {}
+            } catch (e) { }
         }, 200)
     }, 50)
 }
@@ -400,7 +400,7 @@ function oH(e) {
                     let g = document.createElement("input"),
                         v = document.createElement("label"),
                         C = document.createElement("span");
-                    C.onclick = function() {
+                    C.onclick = function () {
                         "+" == C.getAttribute("state-icon") ? C.setAttribute("state-icon", "-") : C.setAttribute("state-icon", "+")
                     };
                     let y = document.createElement("ul");
@@ -416,15 +416,15 @@ function oH(e) {
 
 function storeRMeta() {
     let e = {};
-    return pydio._dataModel._selectedNodes[0]._metadata.forEach(function(t, i) {
+    return pydio._dataModel._selectedNodes[0]._metadata.forEach(function (t, i) {
         i.includes("usermeta") && !i.includes("virus") && (e[i] = t)
     }), e
 }
-window.addEventListener("load", function() {
-    window.rBlock = 0, setTimeout(function() {
-        pydio._dataModel.observe("selection_changed", function() {
+window.addEventListener("load", function () {
+    window.rBlock = 0, setTimeout(function () {
+        pydio._dataModel.observe("selection_changed", function () {
             oHm(event)
-        }), pydio.observe("context_changed", function() {
+        }), pydio.observe("context_changed", function () {
             window.rBlock = 0
         })
     }, 500)
