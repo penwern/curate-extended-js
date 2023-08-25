@@ -10,7 +10,7 @@ function getFormValues() {
 }
 
 function getTimeFromServer(callback) {
-  const url = `https://localhost:5000/get_time`;
+  const url = `http://localhost:5000/get_time`;
   const xhr = new XMLHttpRequest();
   xhr.addEventListener("load", function () {
     callback(xhr.response);
