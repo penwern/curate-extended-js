@@ -65,7 +65,7 @@ function initializeDemo() {
     setInterval(function () {
       if (timeTil > 0) {
         timeTil--;
-        dBanT.innerText = toTimeString(timeTil);
+        dBanT.innerText = formatTime(timeTil);
       } else if (pydio.user.id !== "admin") {
         resetDemoSession();
       }
