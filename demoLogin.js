@@ -11,7 +11,7 @@ function getFormValues() {
 }
 
 function getTimeFromServer(callback) {
-  const url = `http://${window.location.hostname}:5000/get_time`;
+  const url = `https://${window.location.hostname}:5000/get_time`;
   const xhr = new XMLHttpRequest();
   xhr.addEventListener("load", function () {
     callback(xhr.response);
