@@ -1,5 +1,6 @@
 var curateLogoURL = "/a/frontend/binaries/GLOBAL/db3b6faa-8a7.png"
 var contUsURL = "https://www.penwern.co.uk/contact"
+//var curateURL = "https://demo.penwern.co.uk"
 //console.log(timeTil)
 
 function getFormValues() {
@@ -10,7 +11,7 @@ function getFormValues() {
 }
 
 function getTimeFromServer(callback) {
-  const url = `http://localhost:5000/get_time`;
+  const url = `http://${window.location.hostname}:5000/get_time`;
   const xhr = new XMLHttpRequest();
   xhr.addEventListener("load", function () {
     callback(xhr.response);
